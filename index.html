@@ -1,46 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
+
   <meta
     name="viewport"
-    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
-  />
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <title>For Justina</title>
+  <title>My Take — Head Coverings</title>
 
   <style>
     :root {
-      --page-bg: #f5f3ef;
-      --text: #292725;
+      --paper: #f5f2ec;
+      --paper-light: #fbfaf7;
+      --ink: #292725;
+      --muted: #7c7572;
 
-      /* The giant background typography */
-      --ghost-start: rgba(111, 94, 132, 0.075);
-      --ghost-mid: rgba(111, 94, 132, 0.045);
-      --ghost-end: rgba(111, 94, 132, 0);
+      --accent: #75617e;
+      --accent-soft: rgba(117, 97, 126, 0.11);
+      --accent-faint: rgba(117, 97, 126, 0.055);
+
+      --rule: rgba(55, 47, 51, 0.14);
     }
 
     * {
       box-sizing: border-box;
     }
 
-    html,
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100%;
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
+      margin: 0;
+      min-height: 100vh;
+
+      color: var(--ink);
+
       background:
         radial-gradient(
-          circle at 70% 10%,
-          rgba(255, 255, 255, 0.9),
-          transparent 45%
+          circle at 82% 4%,
+          rgba(255,255,255,.95),
+          transparent 34rem
         ),
-        var(--page-bg);
-
-      color: var(--text);
+        linear-gradient(
+          135deg,
+          var(--paper-light),
+          var(--paper)
+        );
 
       font-family:
         Georgia,
@@ -50,43 +58,43 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    /* =========================================================
-       BACKGROUND NAME
-       ========================================================= */
+
+    /* ======================================================
+       JUSTINA — THE BACKGROUND PRESENCE
+       ====================================================== */
 
     .name-marquee {
       position: fixed;
       z-index: 0;
 
-      top: 0;
-      bottom: 0;
-      left: 0;
+      inset: 0 auto 0 0;
 
-      width: 30vw;
-      min-width: 95px;
-      max-width: 180px;
+      width: clamp(92px, 28vw, 175px);
 
       overflow: hidden;
 
       pointer-events: none;
+      user-select: none;
 
-      /* Very subtle fade into the page */
-      mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 10%,
-        black 90%,
-        transparent 100%
-      );
+      -webkit-mask-image:
+        linear-gradient(
+          to bottom,
+          transparent 0%,
+          black 9%,
+          black 91%,
+          transparent 100%
+        );
 
-      -webkit-mask-image: linear-gradient(
-        to bottom,
-        transparent 0%,
-        black 10%,
-        black 90%,
-        transparent 100%
-      );
+      mask-image:
+        linear-gradient(
+          to bottom,
+          transparent 0%,
+          black 9%,
+          black 91%,
+          transparent 100%
+        );
     }
+
 
     .name-track {
       position: absolute;
@@ -94,19 +102,15 @@
       left: 50%;
       top: 0;
 
-      height: max-content;
-
       display: flex;
       flex-direction: column;
 
-      transform: translateX(-50%);
-
-      animation: nameScroll 28s linear infinite;
+      animation: drift 32s linear infinite;
     }
 
-    .name {
-      writing-mode: vertical-rl;
 
+    .ghost-name {
+      writing-mode: vertical-rl;
       transform: rotate(180deg);
 
       font-family:
@@ -115,39 +119,26 @@
         Arial,
         sans-serif;
 
-      font-size: clamp(5rem, 18vw, 11rem);
-
       font-weight: 800;
 
-      letter-spacing: -0.06em;
+      font-size: clamp(6rem, 20vw, 11rem);
 
-      line-height: 0.82;
+      line-height: .8;
+
+      letter-spacing: -.075em;
 
       white-space: nowrap;
 
-      /* Subtle gradient rather than flat purple */
-      background: linear-gradient(
-        180deg,
-        var(--ghost-start),
-        var(--ghost-mid) 50%,
-        var(--ghost-end)
-      );
+      padding: .16em 0;
 
-      -webkit-background-clip: text;
-      background-clip: text;
+      color: rgba(102, 79, 115, .065);
 
-      color: transparent;
-
-      /* Very soft dimensionality */
-      filter:
-        drop-shadow(0 2px 8px rgba(60, 45, 75, 0.035));
-
-      user-select: none;
-
-      padding: 0.15em 0;
+      text-shadow:
+        0 4px 18px rgba(75, 54, 87, .025);
     }
 
-    @keyframes nameScroll {
+
+    @keyframes drift {
       from {
         transform: translate(-50%, 0);
       }
@@ -157,200 +148,760 @@
       }
     }
 
-    /* =========================================================
-       CONTENT
-       ========================================================= */
+
+    /* ======================================================
+       PAGE
+       ====================================================== */
 
     main {
       position: relative;
       z-index: 1;
 
-      width: min(100%, 680px);
+      width: min(100%, 700px);
 
       margin: 0 auto;
 
       padding:
-        8vh
-        clamp(1.8rem, 9vw, 3rem)
-        12vh
-        calc(clamp(1.8rem, 9vw, 3rem) + 8vw);
+        10vh
+        clamp(1.55rem, 7vw, 3.5rem)
+        15vh
+        clamp(4.8rem, 20vw, 8.5rem);
     }
 
-    article {
-      position: relative;
+
+    /* ======================================================
+       OPENING
+       ====================================================== */
+
+    header {
+      margin-bottom: 4rem;
     }
 
-    .eyebrow {
-      margin: 0 0 1rem;
+
+    .kicker {
+      margin-bottom: 1.2rem;
 
       font-family:
         "Helvetica Neue",
         Arial,
         sans-serif;
 
-      font-size: 0.68rem;
+      font-size: .67rem;
       font-weight: 700;
 
-      letter-spacing: 0.18em;
+      letter-spacing: .22em;
       text-transform: uppercase;
 
-      color: #8c8590;
+      color: var(--accent);
     }
 
+
     h1 {
-      margin: 0 0 2rem;
+      margin: 0;
 
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+      font-size: clamp(3.1rem, 13vw, 5.5rem);
 
-      font-size: clamp(2.3rem, 10vw, 4.2rem);
+      line-height: .88;
 
       font-weight: 400;
 
-      line-height: 0.98;
-
-      letter-spacing: -0.045em;
+      letter-spacing: -.055em;
     }
 
-    .opening {
-      font-size: 1.2rem;
-      line-height: 1.75;
 
-      margin-bottom: 2.5rem;
+    .subtitle {
+      margin-top: 1.2rem;
+
+      font-style: italic;
+
+      font-size: 1rem;
+
+      color: var(--muted);
     }
+
+
+    /* ======================================================
+       READING TYPOGRAPHY
+       ====================================================== */
 
     p {
-      margin: 0 0 1.6rem;
+      margin: 0 0 1.75rem;
 
-      font-size: 1.05rem;
+      font-size: clamp(1.02rem, 3.8vw, 1.12rem);
+
+      line-height: 1.83;
+
+      letter-spacing: .002em;
+    }
+
+
+    .opening {
+      font-size: clamp(1.17rem, 4.3vw, 1.34rem);
+
+      line-height: 1.72;
+
+      letter-spacing: -.01em;
+    }
+
+
+    /* ======================================================
+       SCRIPTURE
+       ====================================================== */
+
+    .scripture {
+      position: relative;
+
+      margin: 2.8rem 0;
+
+      padding:
+        .25rem
+        0
+        .25rem
+        1.45rem;
+
+      border-left: 1px solid
+        rgba(117, 97, 126, .4);
+
+      color: #484043;
+
+      font-size: 1.02rem;
 
       line-height: 1.82;
 
-      letter-spacing: 0.005em;
+      font-style: italic;
     }
 
-    .divider {
-      width: 3rem;
+
+    .verse-number {
+      font-family:
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      font-size: .62em;
+
+      font-style: normal;
+      font-weight: 700;
+
+      vertical-align: super;
+
+      color: var(--accent);
+
+      margin-right: .15em;
+    }
+
+
+    /* ======================================================
+       MAJOR RHETORICAL TURN
+       ====================================================== */
+
+    .turn {
+      position: relative;
+
+      margin:
+        5.5rem
+        -0.7rem
+        4rem;
+
+      padding:
+        2.4rem
+        1.4rem
+        2.1rem;
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(117,97,126,.07),
+          rgba(255,255,255,.18)
+        );
+
+      border-radius: 3px;
+    }
+
+
+    .turn::before {
+      content: "";
+
+      position: absolute;
+
+      top: 0;
+      left: 1.4rem;
+
+      width: 2.7rem;
       height: 1px;
 
-      margin: 3rem 0;
-
-      background: linear-gradient(
-        90deg,
-        rgba(111, 94, 132, 0.5),
-        transparent
-      );
+      background: var(--accent);
     }
 
-    /* =========================================================
-       SMALL SCREENS
-       ========================================================= */
+
+    .turn p:last-child {
+      margin-bottom: 0;
+    }
+
+
+    .turn-lead {
+      font-size: 1.2rem;
+
+      line-height: 1.68;
+
+      letter-spacing: -.012em;
+    }
+
+
+    /* ======================================================
+       SMALL TRANSITION
+       ====================================================== */
+
+    .breath {
+      display: flex;
+      align-items: center;
+
+      gap: .9rem;
+
+      margin: 4.2rem 0;
+    }
+
+
+    .breath::before {
+      content: "";
+
+      width: 2.4rem;
+      height: 1px;
+
+      background: rgba(117,97,126,.5);
+    }
+
+
+    .breath::after {
+      content: "✦";
+
+      font-size: .55rem;
+
+      color: rgba(117,97,126,.6);
+    }
+
+
+    /* ======================================================
+       ANGELS
+       ====================================================== */
+
+    .aside {
+      margin: 4rem 0;
+
+      padding:
+        2rem
+        1.6rem;
+
+      background:
+        rgba(255,255,255,.38);
+
+      border:
+        1px solid
+        rgba(117,97,126,.12);
+
+      box-shadow:
+        0 18px 50px
+        rgba(55,43,60,.035);
+    }
+
+
+    .aside-label {
+      margin-bottom: 1.25rem;
+
+      font-family:
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      font-size: .63rem;
+      font-weight: 700;
+
+      letter-spacing: .18em;
+      text-transform: uppercase;
+
+      color: var(--accent);
+    }
+
+
+    .aside p:last-child {
+      margin-bottom: 0;
+    }
+
+
+    /* ======================================================
+       FINAL POINTS
+       ====================================================== */
+
+    .final-points {
+      margin-top: 5rem;
+    }
+
+
+    .final-points h2 {
+      margin:
+        0
+        0
+        2.5rem;
+
+      font-size: 1.85rem;
+
+      font-weight: 400;
+
+      letter-spacing: -.035em;
+    }
+
+
+    .point {
+      display: grid;
+
+      grid-template-columns:
+        2.2rem 1fr;
+
+      gap: .6rem;
+
+      padding:
+        1.4rem 0;
+
+      border-top:
+        1px solid var(--rule);
+    }
+
+
+    .point-number {
+      padding-top: .12rem;
+
+      font-family:
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      font-size: .7rem;
+      font-weight: 700;
+
+      color: var(--accent);
+    }
+
+
+    .point p {
+      margin: 0;
+    }
+
+
+    /* ======================================================
+       END
+       ====================================================== */
+
+    footer {
+      margin-top: 6rem;
+
+      padding-top: 1.5rem;
+
+      border-top:
+        1px solid var(--rule);
+
+      font-family:
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      font-size: .66rem;
+
+      letter-spacing: .14em;
+      text-transform: uppercase;
+
+      color: var(--muted);
+    }
+
+
+    /* ======================================================
+       MOBILE
+       ====================================================== */
 
     @media (max-width: 500px) {
-      .name-marquee {
-        width: 27vw;
-        min-width: 82px;
-      }
 
       main {
-        padding-left: calc(1.4rem + 7vw);
-        padding-right: 1.5rem;
+        padding-left:
+          clamp(4.4rem, 21vw, 6rem);
+
+        padding-right:
+          1.45rem;
       }
 
-      p {
-        font-size: 1.02rem;
-        line-height: 1.78;
+      .name-marquee {
+        width: 27vw;
+      }
+
+      .turn {
+        margin-left: -.3rem;
+        margin-right: -.3rem;
+      }
+
+      .aside {
+        margin-left: -.3rem;
+        margin-right: -.3rem;
+
+        padding:
+          1.7rem
+          1.25rem;
       }
     }
 
-    /* =========================================================
-       ACCESSIBILITY
-       ========================================================= */
 
     @media (prefers-reduced-motion: reduce) {
       .name-track {
         animation: none;
       }
     }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- =======================================================
-       GIANT MOVING NAME
-       ======================================================= -->
+  <!-- =====================================================
+       JUSTINA
+       ===================================================== -->
 
   <div class="name-marquee" aria-hidden="true">
+
     <div class="name-track">
 
-      <!-- Repeated so the animation can loop seamlessly -->
-      <div class="name">Justina</div>
-      <div class="name">Justina</div>
-      <div class="name">Justina</div>
-      <div class="name">Justina</div>
-      <div class="name">Justina</div>
-      <div class="name">Justina</div>
+      <div class="ghost-name">Justina</div>
+      <div class="ghost-name">Justina</div>
+      <div class="ghost-name">Justina</div>
+      <div class="ghost-name">Justina</div>
+      <div class="ghost-name">Justina</div>
+      <div class="ghost-name">Justina</div>
 
     </div>
+
   </div>
 
 
-  <!-- =======================================================
+
+  <!-- =====================================================
        LETTER
-       ======================================================= -->
+       ===================================================== -->
 
   <main>
-    <article>
 
-      <div class="eyebrow">
-        A letter
+    <header>
+
+      <div class="kicker">
+        My take
       </div>
 
       <h1>
-        Justina,
+        Head<br>
+        Coverings
       </h1>
 
-      <p class="opening">
-        I have been meaning to write this properly for a while,
-        because there are some things that are much easier to say
-        when you aren't trying to squeeze them into a text message.
+      <div class="subtitle">
+        For Justina
+      </div>
+
+    </header>
+
+
+    <!-- OPENING -->
+
+    <p class="opening">
+      This was a somewhat tough one. I started at one position,
+      realized there was another, very valid way to look at it,
+      realized support for the alternative view wasn't as strong
+      as I'd thought, came back to my first view.
+    </p>
+
+
+    <div class="scripture">
+      Now I commend you because you remember me in everything
+      and maintain the traditions even as I delivered them to you.
+
+      <span class="verse-number">3</span>
+      But I want you to understand that the head of every man is
+      Christ, the head of a wife is her husband, and the head of
+      Christ is God.
+    </div>
+
+
+    <p>
+      It begins strong. First it sets up a cosmic hierarchy that
+      is timeless and indepentent of culture.
+    </p>
+
+
+    <div class="scripture">
+      <span class="verse-number">4</span>
+      Every man who prays or prophesies with his head covered
+      dishonors his head,
+
+      <span class="verse-number">5</span>
+      but every wife who prays or prophesies with her head
+      uncovered dishonors her head, since it is the same as if
+      her head were shaven.
+    </div>
+
+
+    <p>
+      Question: if the objective is for the man to honor Christ
+      and for the woman to honor her husband, how is it best
+      done? Does Paul say, "Let us look around at the surrounding
+      culture and see how they do it, so we, the church, can be
+      seen by the public as expressing and honoring these eternal
+      hierarchies"?
+    </p>
+
+
+    <p>
+      Were his commandments merely reflections of the practices
+      of Corinth at large? Maybe. It wouldn't be a bad idea, and
+      God has used this pattern before. So I did a little bit of
+      research, which included the link you sent, the link I sent
+      you, and Grok.
+    </p>
+
+
+    <p>
+      The results? Inconclusive.
+    </p>
+
+
+    <p>
+      For women, there are conflicting reports. Some say
+      bareheadedness in public was shameful, some say it was
+      commonplace. Some say the temple prostitutes of Corinth
+      shaved their heads. The link I sent you insists that that
+      practice had been abolished two centuries prior.
+    </p>
+
+
+    <p>
+      The history is a fog. It's a little clearer for men. Men,
+      apparently, did indeed cover their heads during official
+      acts in the course of temple worship. In that case, Paul
+      was going directly against the prevailing culture.
+    </p>
+
+
+    <p>
+      Bottom line, I am reluctant to believe in my own
+      hypothesis: that Paul was using local norms to illustrate
+      eternal piety.
+    </p>
+
+
+
+    <!-- THE TURN -->
+
+    <section class="turn">
+
+      <p class="turn-lead">
+        So back I went to the Biblical text, and the impression
+        that Paul reasoning from fundamental, eternal truths,
+        rather than societal mores, only grew stronger:
       </p>
 
-      <div class="divider"></div>
+    </section>
+
+
+    <div class="scripture">
+
+      For a man ought not to cover his head, since he is the image
+      and glory of God, but woman is the glory of man.
+
+      <span class="verse-number">8</span>
+      For man was not made from woman, but woman from man.
+
+      <span class="verse-number">9</span>
+      Neither was man created for woman, but woman for man.
+
+      <span class="verse-number">10</span>
+      That is why a wife ought to have a symbol of authority on
+      her head, because of the angels.
+
+    </div>
+
+
+    <p>
+      And stronger still...
+    </p>
+
+
+    <div class="scripture">
+
+      <span class="verse-number">14</span>
+      Does not nature itself teach you that if a man wears long
+      hair it is a disgrace for him,
+
+      <span class="verse-number">15</span>
+      but if a woman has long hair, it is her glory? For her hair
+      is given to her for a covering
+
+    </div>
+
+
+    <p>
+      ...since Paul is now appealing to Nature itself, which is
+      independent of time, place and people.
+    </p>
+
+
+
+    <div class="breath"></div>
+
+
+
+    <!-- ANGELS -->
+
+    <section class="aside">
+
+      <div class="aside-label">
+        About the angel business
+      </div>
 
       <p>
-        This is dummy text for now. Imagine this becoming the first
-        paragraph of the actual letter. The page is deliberately
-        quiet, because I want the words themselves to carry most of
-        the weight.
+        Let me quickly comment about the angel business. I think
+        the instructive scriptural reference here is Jude vs 9.
       </p>
 
       <p>
-        There will eventually be quite a lot here. Long paragraphs,
-        little pauses, perhaps some particularly important sentences,
-        and all the things that would normally get buried inside a
-        gigantic wall of text on a phone screen.
+        Remember when you were a kid and you said "Shut up!" to
+        your little brother, and your parents rebuked you? Neither
+        "shut" nor "up" is a bad word. What they objected to was
+        the somewhat disrespectful liberty of using harsh,
+        abusive language towards your brother in their presence.
       </p>
 
       <p>
-        The idea is that reading this should feel less like opening
-        somebody's enormous text message and more like being handed
-        something that was actually made for you.
+        I believe this is what is going on here:
       </p>
 
-      <div class="divider"></div>
+
+      <div class="scripture">
+
+        <span class="verse-number">9</span>
+        But when [even] the archangel Michael, contending with
+        the devil, judicially argued (disputed) about the body of
+        Moses, he dared not [presume to] bring an abusive
+        condemnation against him, but [simply] said, The Lord
+        rebuke you!
+
+      </div>
+
 
       <p>
-        So for now, this is simply a placeholder. Replace this text
-        with the real thing, and we can keep refining the typography,
-        spacing, animation, transitions, and little details until the
-        whole page feels exactly right.
+        It would appear that the angels have a keenly developed
+        sense of propriety.
       </p>
 
-    </article>
+    </section>
+
+
+
+    <!-- FINAL POINTS -->
+
+    <section class="final-points">
+
+      <h2>
+        Some final points:
+      </h2>
+
+
+      <div class="point">
+
+        <div class="point-number">
+          01
+        </div>
+
+        <p>
+          The text refers to wives. I have no idea what this
+          means for unmarried women.
+        </p>
+
+      </div>
+
+
+      <div class="point">
+
+        <div class="point-number">
+          02
+        </div>
+
+        <p>
+          The text refers to covering (or uncovering) when
+          praying or prophesying, and doing so in public, keeping
+          in mind the definition of prophesying we learnt from
+          Pastor Matt.
+        </p>
+
+      </div>
+
+
+      <div class="point">
+
+        <div class="point-number">
+          03
+        </div>
+
+        <p>
+          In the part of Africa where I grew up, women struggle
+          mortally with hair. It is by no means to be assumed
+          that it's natural for a woman to have longer hair than
+          a man.
+        </p>
+
+      </div>
+
+
+      <div class="point">
+
+        <div class="point-number">
+          04
+        </div>
+
+        <div>
+
+          <p>
+            Absalom, the most handsome man in the Bible, had
+            really long hair. Really long.
+          </p>
+
+
+          <div class="scripture">
+
+            2 Samuel 14:25–26 (ESV):
+
+            “Now in all Israel there was no one so much to be
+            praised for his handsome appearance as Absalom. From
+            the sole of his foot to the crown of his head there
+            was no blemish in him. And when he cut the hair of
+            his head (for at the end of every year he used to cut
+            it; when it was heavy on him, he cut it), he weighed
+            the hair of his head, two hundred shekels by the
+            king’s weight.”
+
+          </div>
+
+
+          <p>
+            Did they consider Absalom to be a disgrace? Perhaps
+            it was indeed a scandal, but he was the dashing,
+            charming, handsome prince. Of all people, he could
+            pull it off. Who knows?
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <footer>
+      
+    </footer>
+
   </main>
 
 </body>
