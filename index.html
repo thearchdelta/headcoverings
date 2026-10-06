@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0"
+  />
+
+  <title>For Justina</title>
+
+  <style>
+    :root {
+      --page-bg: #f5f3ef;
+      --text: #292725;
+
+      /* The giant background typography */
+      --ghost-start: rgba(111, 94, 132, 0.075);
+      --ghost-mid: rgba(111, 94, 132, 0.045);
+      --ghost-end: rgba(111, 94, 132, 0);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+    }
+
+    body {
+      background:
+        radial-gradient(
+          circle at 70% 10%,
+          rgba(255, 255, 255, 0.9),
+          transparent 45%
+        ),
+        var(--page-bg);
+
+      color: var(--text);
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* =========================================================
+       BACKGROUND NAME
+       ========================================================= */
+
+    .name-marquee {
+      position: fixed;
+      z-index: 0;
+
+      top: 0;
+      bottom: 0;
+      left: 0;
+
+      width: 30vw;
+      min-width: 95px;
+      max-width: 180px;
+
+      overflow: hidden;
+
+      pointer-events: none;
+
+      /* Very subtle fade into the page */
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+      );
+
+      -webkit-mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        black 10%,
+        black 90%,
+        transparent 100%
+      );
+    }
+
+    .name-track {
+      position: absolute;
+
+      left: 50%;
+      top: 0;
+
+      height: max-content;
+
+      display: flex;
+      flex-direction: column;
+
+      transform: translateX(-50%);
+
+      animation: nameScroll 28s linear infinite;
+    }
+
+    .name {
+      writing-mode: vertical-rl;
+
+      transform: rotate(180deg);
+
+      font-family:
+        "Arial Narrow",
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      font-size: clamp(5rem, 18vw, 11rem);
+
+      font-weight: 800;
+
+      letter-spacing: -0.06em;
+
+      line-height: 0.82;
+
+      white-space: nowrap;
+
+      /* Subtle gradient rather than flat purple */
+      background: linear-gradient(
+        180deg,
+        var(--ghost-start),
+        var(--ghost-mid) 50%,
+        var(--ghost-end)
+      );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      color: transparent;
+
+      /* Very soft dimensionality */
+      filter:
+        drop-shadow(0 2px 8px rgba(60, 45, 75, 0.035));
+
+      user-select: none;
+
+      padding: 0.15em 0;
+    }
+
+    @keyframes nameScroll {
+      from {
+        transform: translate(-50%, 0);
+      }
+
+      to {
+        transform: translate(-50%, -50%);
+      }
+    }
+
+    /* =========================================================
+       CONTENT
+       ========================================================= */
+
+    main {
+      position: relative;
+      z-index: 1;
+
+      width: min(100%, 680px);
+
+      margin: 0 auto;
+
+      padding:
+        8vh
+        clamp(1.8rem, 9vw, 3rem)
+        12vh
+        calc(clamp(1.8rem, 9vw, 3rem) + 8vw);
+    }
+
+    article {
+      position: relative;
+    }
+
+    .eyebrow {
+      margin: 0 0 1rem;
+
+      font-family:
+        "Helvetica Neue",
+        Arial,
+        sans-serif;
+
+      font-size: 0.68rem;
+      font-weight: 700;
+
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+
+      color: #8c8590;
+    }
+
+    h1 {
+      margin: 0 0 2rem;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size: clamp(2.3rem, 10vw, 4.2rem);
+
+      font-weight: 400;
+
+      line-height: 0.98;
+
+      letter-spacing: -0.045em;
+    }
+
+    .opening {
+      font-size: 1.2rem;
+      line-height: 1.75;
+
+      margin-bottom: 2.5rem;
+    }
+
+    p {
+      margin: 0 0 1.6rem;
+
+      font-size: 1.05rem;
+
+      line-height: 1.82;
+
+      letter-spacing: 0.005em;
+    }
+
+    .divider {
+      width: 3rem;
+      height: 1px;
+
+      margin: 3rem 0;
+
+      background: linear-gradient(
+        90deg,
+        rgba(111, 94, 132, 0.5),
+        transparent
+      );
+    }
+
+    /* =========================================================
+       SMALL SCREENS
+       ========================================================= */
+
+    @media (max-width: 500px) {
+      .name-marquee {
+        width: 27vw;
+        min-width: 82px;
+      }
+
+      main {
+        padding-left: calc(1.4rem + 7vw);
+        padding-right: 1.5rem;
+      }
+
+      p {
+        font-size: 1.02rem;
+        line-height: 1.78;
+      }
+    }
+
+    /* =========================================================
+       ACCESSIBILITY
+       ========================================================= */
+
+    @media (prefers-reduced-motion: reduce) {
+      .name-track {
+        animation: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =======================================================
+       GIANT MOVING NAME
+       ======================================================= -->
+
+  <div class="name-marquee" aria-hidden="true">
+    <div class="name-track">
+
+      <!-- Repeated so the animation can loop seamlessly -->
+      <div class="name">Justina</div>
+      <div class="name">Justina</div>
+      <div class="name">Justina</div>
+      <div class="name">Justina</div>
+      <div class="name">Justina</div>
+      <div class="name">Justina</div>
+
+    </div>
+  </div>
+
+
+  <!-- =======================================================
+       LETTER
+       ======================================================= -->
+
+  <main>
+    <article>
+
+      <div class="eyebrow">
+        A letter
+      </div>
+
+      <h1>
+        Justina,
+      </h1>
+
+      <p class="opening">
+        I have been meaning to write this properly for a while,
+        because there are some things that are much easier to say
+        when you aren't trying to squeeze them into a text message.
+      </p>
+
+      <div class="divider"></div>
+
+      <p>
+        This is dummy text for now. Imagine this becoming the first
+        paragraph of the actual letter. The page is deliberately
+        quiet, because I want the words themselves to carry most of
+        the weight.
+      </p>
+
+      <p>
+        There will eventually be quite a lot here. Long paragraphs,
+        little pauses, perhaps some particularly important sentences,
+        and all the things that would normally get buried inside a
+        gigantic wall of text on a phone screen.
+      </p>
+
+      <p>
+        The idea is that reading this should feel less like opening
+        somebody's enormous text message and more like being handed
+        something that was actually made for you.
+      </p>
+
+      <div class="divider"></div>
+
+      <p>
+        So for now, this is simply a placeholder. Replace this text
+        with the real thing, and we can keep refining the typography,
+        spacing, animation, transitions, and little details until the
+        whole page feels exactly right.
+      </p>
+
+    </article>
+  </main>
+
+</body>
+</html>
